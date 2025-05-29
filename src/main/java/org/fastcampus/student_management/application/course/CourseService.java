@@ -5,6 +5,7 @@ import java.util.List;
 import org.fastcampus.student_management.application.course.dto.CourseInfoDto;
 import org.fastcampus.student_management.application.student.StudentService;
 import org.fastcampus.student_management.domain.Course;
+import org.fastcampus.student_management.domain.CourseList;
 import org.fastcampus.student_management.domain.DayOfWeek;
 import org.fastcampus.student_management.domain.Student;
 import org.fastcampus.student_management.repo.CourseRepository;
@@ -32,6 +33,10 @@ public class CourseService {
   }
 
   public void changeFee(String studentName, int fee) {
-    // TODO: 과제 구현 부분
+    // 특정 학생 이름이 등록된 수업들을 불런온다
+    List<Course> courses = courseRepository.getCourseListByStudent(studentName);
+
+    CourseList courseList = new CourseList(courses);
+    courseList.changeAllCoursesFee(fee);
   }
 }

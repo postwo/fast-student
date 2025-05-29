@@ -25,8 +25,10 @@ public class CourseService {
   }
 
   public List<CourseInfoDto> getCourseDayOfWeek(DayOfWeek dayOfWeek) {
-    // TODO: 과제 구현 부분
-    return new ArrayList<>();
+    // 이미 저장된 수업들 조회
+    List<Course> courses = courseRepository.getCourseDayOfWeek(dayOfWeek);
+    // 람다 형식 장점 간결함
+    return courses.stream().map(CourseInfoDto::new).toList();
   }
 
   public void changeFee(String studentName, int fee) {
